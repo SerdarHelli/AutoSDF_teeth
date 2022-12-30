@@ -89,6 +89,14 @@ def CreateDataset(opt):
         train_dataset.initialize(opt, 'train', cat=opt.cat)
         test_dataset.initialize(opt, 'test', cat=opt.cat)
 
+    elif opt.dataset_mode == 'teeth':
+        """ ShapeNet Image dataset. Need to load the code as well """
+        from datasets.teeth_dataset import TeethDataset
+        train_dataset = TeethDataset()
+        test_dataset = TeethDataset()
+        train_dataset.initialize(opt, 'train', cat=opt.cat)
+        test_dataset.initialize(opt, 'test', cat=opt.cat)
+
 
     else:
         raise ValueError("Dataset [%s] not recognized." % opt.dataset_mode)

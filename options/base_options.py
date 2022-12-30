@@ -17,7 +17,7 @@ class BaseOptions():
     def initialize(self):
         # hyper parameters
         self.parser.add_argument('--batch_size', type=int, default=1, help='input batch size')
-        self.parser.add_argument('--gpu_ids', type=str, default='1', help='gpu ids: e.g. 0  0,1,2, 0,2. use -1 for CPU')
+        self.parser.add_argument('--gpu_ids', type=str, default='0', help='gpu ids: e.g. 0  0,1,2, 0,2. use -1 for CPU')
 
         # log stuff
         self.parser.add_argument('--logs_dir', type=str, default='./logs', help='models are saved here')
@@ -40,7 +40,8 @@ class BaseOptions():
         self.parser.add_argument('--vq_cat', type=str, default=None, help='for setting code dir in XXXCodeDataset.')
         self.parser.add_argument('--vq_ckpt', type=str, default=None, help='vq ckpt to load.')
         self.parser.add_argument('--vq_note', type=str, default='default', help='for different setting of p-vqvae. used in extract_code.py')
-        
+        self.parser.add_argument('--vq_data_path', default=None,type=str, help='Data Path')
+
         # transformer stuff
         self.parser.add_argument('--tf_cfg', type=str, default='configs/rand_tf_snet_code.yaml', help='tf model config file')
 
