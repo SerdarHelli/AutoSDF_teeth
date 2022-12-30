@@ -1,7 +1,7 @@
 import h5py
 import trimesh
 import numpy as np
-import marching_cubes as mcubes
+import  mcubes
 import einops
 from einops import rearrange, repeat
 from skimage import measure

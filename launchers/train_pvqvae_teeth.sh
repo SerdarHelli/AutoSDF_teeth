@@ -25,6 +25,7 @@ print_freq=100 # default: 30
 today=$(date '+%m%d')
 me=`basename "$0"`
 me=$(echo $me | cut -d'.' -f 1)
+logs_dir="/content/drive/MyDrive/VQ-AutoEncoder/logs"
 
 note="rerun"
 name="${model}-${dataset_mode}-${cat}-LR${lr}-T${trunc_thres}-${note}"
@@ -49,4 +50,4 @@ python train.py --name ${name} --gpu_ids ${gpuid} --lr ${lr} --batch_size ${batc
                 --nepochs ${nepochs} --nepochs_decay ${nepochs_decay} \
                 --dataset_mode ${dataset_mode} --cat ${cat} --trunc_thres ${trunc_thres} --max_dataset_size ${max_dataset_size} \
                 --display_freq ${display_freq} --print_freq ${print_freq} \
-                 --debug ${debug} --vq_data_path ${data_path}
+                 --debug ${debug} --vq_data_path ${data_path} --logs_dir ${logs_dir}
