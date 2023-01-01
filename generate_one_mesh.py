@@ -28,7 +28,7 @@ util.seed_everything(seed)
 
 sdf_file_path=opt.sdf_path
 sdf = np.load(sdf_file_path)
-sdf = torch.Tensor(sdf).view(1, 64, 64, 64)
+sdf = torch.Tensor(sdf).view(1,1, 64, 64, 64)
 # print(sdf.shape)
 # sdf = sdf[:, :64, :64, :64]
 
@@ -36,8 +36,13 @@ thres = 0.2
 if thres != 0.0:
     sdf = torch.clamp(sdf, min=-thres, max=thres)
 
-
-
+data = {
+    'sdf': sdf,
+    'cat_id': 0,
+    'cat_str': "teeth",
+    'path': sdf_file_path,
+    # 'tsdf': tsdf,
+}
 # main loop
 model = create_model(opt)
 cprint(f'[*] "{opt.model}" initialized.', 'cyan')
@@ -46,7 +51,7 @@ cprint(f'[*] "{opt.model}" initialized.', 'cyan')
 model.load_ckpt(opt.ckpt)
 
 
-model.inference(sdf.cuda())
+model.inference(data)
         
 mesh=sdf_to_mesh_savemesh(model.x_recon,opt.mesh_path)
 

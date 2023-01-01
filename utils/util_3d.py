@@ -334,13 +334,11 @@ def render_voxel(mesh_renderer, voxel, render_all=False):
 def sdf_to_mesh_savemesh(sdf, path,level=0.02, color=None, render_all=False):
     # device='cuda'
     device=sdf.device
+    sdf = sdf.detach().cpu().numpy()
+    sdf=np.reshape(sdf,(64,64,64))
+    vert, faces= mcubes.marching_cubes(sdf, level)
 
-
-    sdf_i = sdf[i, 0].detach().cpu().numpy()
-    vertices_orig, triangles_orig = mcubes.marching_cubes(sdf_i, 0.02)
-
-    
-    mcubes.export_obj(vertices_orig, triangles_orig,path)
+    mcubes.export_obj(vert, faces,path)
 
 
 def sdf_to_mesh(sdf, level=0.02, color=None, render_all=False):
