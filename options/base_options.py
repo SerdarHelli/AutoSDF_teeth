@@ -85,6 +85,10 @@ class BaseOptions():
         self.parser.add_argument('--seed', default=111, type=int, help='seed')
         self.parser.add_argument('--profiler', default='0', type=str, choices=['0', '1'], help='use profiler or not')
 
+        #generate_one_mesh
+        self.parser.add_argument('--sdf_path', default=None, type=str, help='One SDF npy file')
+        self.parser.add_argument('--mesh_path', default=None, type=str, help='One Mesh File Path')
+
         self.initialized = True
 
     def parse(self):
